@@ -12,7 +12,6 @@ const { title } = Astro.props;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="color-scheme" content="light only" />
     <link rel="icon" type="image/png" href="/iconos/Anillos.png" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
@@ -37,24 +36,16 @@ const { title } = Astro.props;
     />
 
     <style>
-      /* FORZAR MODO CLARO - DESHABILITAR MODO OSCURO */
-      :root {
-        color-scheme: light only;
-      }
-
       * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
-        color-scheme: light only;
       }
 
       html {
         width: 100%;
         height: 100%;
-        overflow-x: hidden;
-        color-scheme: light only;
-        background-color: white;
+        overflow-x: hidden; /* ← Elimina scroll horizontal */
       }
 
       body {
@@ -62,48 +53,16 @@ const { title } = Astro.props;
         padding: 0;
         width: 100%;
         min-height: 100vh;
-        overflow-x: hidden;
-        background-color: white;
-        color-scheme: light only;
-        position: relative;
-      }
-
-      /* Textura de fondo con opacidad */
-      body::before {
-        content: "";
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
+        overflow-x: hidden; /* ← Elimina scroll horizontal */
         background-image: url("/imagenes/textura2.png");
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
-        opacity: 0.5;
-        z-index: -1;
-        pointer-events: none;
+        background-attachment: fixed;
       }
 
       main {
         background: transparent !important;
-      }
-
-      /* Prevenir cualquier cambio de color por modo oscuro */
-      @media (prefers-color-scheme: dark) {
-        :root {
-          color-scheme: light only !important;
-        }
-
-        html,
-        body {
-          background-color: white !important;
-          color: inherit !important;
-        }
-
-        * {
-          color-scheme: light only !important;
-        }
       }
     </style>
   </head>

@@ -1,0 +1,108 @@
+---
+// Portada.astro
+import NombresFlores from "./NombresFlores.astro";
+---
+
+<div
+    id="contenedor-invitacion"
+    class="relative w-full min-h-screen bg-white overflow-hidden"
+>
+    <div id="contenido-revelado" class="opacity-0 invisible w-full">
+        <NombresFlores />
+    </div>
+
+    <section
+        id="portada-sobre"
+        class="fixed inset-0 w-full h-screen z-50 flex items-center justify-center overflow-hidden bg-white"
+    >
+        <!-- SOLAPA IZQUIERDA DEL SOBRE -->
+        <div
+            id="sobre-izq"
+            class="absolute left-0 top-0 w-1/2 h-full z-20 overflow-hidden"
+        >
+            <img
+                src="/imagenes/portada.png"
+                alt="Portada Izquierda"
+                class="absolute top-1/2 left-0 h-full w-auto object-cover"
+                style="transform: translateY(-50%); object-position: left center;"
+            />
+        </div>
+
+        <!-- SOLAPA DERECHA DEL SOBRE -->
+        <div
+            id="sobre-der"
+            class="absolute right-0 top-0 w-1/2 h-full z-20 overflow-hidden"
+        >
+            <img
+                src="/imagenes/portada.png"
+                alt="Portada Derecha"
+                class="absolute top-1/2 right-0 h-full w-auto object-cover"
+                style="transform: translateY(-50%); object-position: right center;"
+            />
+        </div>
+
+        <!-- BOTÓN CENTRAL (boton.png) -->
+        <div class="relative z-40 pointer-events-auto">
+            <button
+                id="btn-sello"
+                class="relative cursor-pointer transition-all duration-500 hover:scale-110 active:scale-95 focus:outline-none"
+            >
+                <img
+                    src="/imagenes/boton.png"
+                    alt="Sello"
+                    class="w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 drop-shadow-[0_10px_20px_rgba(0,0,0,0.3)]"
+                />
+            </button>
+        </div>
+    </section>
+</div>
+
+<script>
+    import { gsap } from "gsap";
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const btnSello = document.getElementById("btn-sello");
+        const sobreIzq = document.getElementById("sobre-izq");
+        const sobreDer = document.getElementById("sobre-der");
+        const portada = document.getElementById("portada-sobre");
+        const contenido = document.getElementById("contenido-revelado");
+
+        btnSello?.addEventListener("click", () => {
+            gsap.to(portada, {
+                opacity: 0,
+                duration: 0.8,
+                ease: "power2.out",
+                onStart: () => {
+                    document.body.style.overflow = "auto";
+                },
+                onComplete: () => {
+                    portada?.style.setProperty("display", "none");
+                    gsap.to(contenido, {
+                        autoAlpha: 1,
+                        duration: 0.5,
+                    });
+                },
+            });
+        });
+    });
+</script>
+
+<style>
+    body {
+        overflow: hidden;
+    }
+
+    /* Asegurar que no haya líneas blancas entre las mitades */
+    #sobre-izq,
+    #sobre-der {
+        margin: 0;
+        padding: 0;
+    }
+
+    #sobre-izq img,
+    #sobre-der img {
+        margin: 0;
+        padding: 0;
+        display: block;
+    }
+</style>

@@ -1,0 +1,291 @@
+<!-- ═══════════════════════════════════════════════════════════ --><!-- ⏰ CONTADOR REGRESIVO PARA LA BODA                          --><!-- ═══════════════════════════════════════════════════════════ -->
+<section class="py-10 md:py-16 relative overflow-hidden">
+    <div class="max-w-3xl mx-auto relative px-4">
+        <!-- 📦 CARD DEL CONTADOR -->
+        <div class="flex justify-center">
+            <div
+                class="relative bg-[#4a5f7f] rounded-[40px] shadow-lg px-12 sm:px-16 md:px-20 py-8 sm:py-12 md:py-14 w-full max-w-xl overflow-hidden"
+                id="card-contador"
+            >
+                <!-- IMAGEN DE FONDO -->
+                <img
+                    src="/imagenes/azul.png"
+                    alt="Fondo contador"
+                    class="absolute inset-0 w-full h-full object-cover"
+                />
+
+                <!-- Overlay opcional (ajusta si necesitas que el texto se lea mejor) -->
+                <div class="absolute inset-0 bg-black/20"></div>
+
+                <!-- Contenido encima del fondo -->
+                <div class="relative z-10">
+                    <!-- 💍 TÍTULO "FALTAN" -->
+                    <div class="text-center mb-6">
+                        <h3
+                            class="font-crimson text-white text-xl sm:text-2xl md:text-3xl uppercase tracking-[0.3em]"
+                            id="titulo-faltan"
+                        >
+                            FALTAN
+                        </h3>
+                    </div>
+
+                    <!-- ⏰ NÚMEROS DEL CONTADOR -->
+                    <div class="text-center mb-4">
+                        <div
+                            class="flex items-center justify-center gap-2"
+                            id="numeros-contador"
+                        >
+                            <!-- DÍAS -->
+                            <span
+                                class="font-crimson text-4xl sm:text-6xl md:text-7xl font-normal text-white tracking-tight numero-item"
+                                id="dias"
+                            >
+                                00
+                            </span>
+
+                            <!-- SEPARADOR : -->
+                            <span
+                                class="font-mono text-4xl sm:text-6xl md:text-7xl font-normal text-white mx-1 separador-item"
+                                >:</span
+                            >
+
+                            <!-- HORAS -->
+                            <span
+                                class="font-crimson text-4xl sm:text-6xl md:text-7xl font-normal text-white tracking-tight numero-item"
+                                id="horas"
+                            >
+                                00
+                            </span>
+
+                            <!-- SEPARADOR : -->
+                            <span
+                                class="font-crimson text-4xl sm:text-6xl md:text-7xl font-normal text-white mx-1 separador-item"
+                                >:</span
+                            >
+
+                            <!-- MINUTOS -->
+                            <span
+                                class="font-crimson text-4xl sm:text-6xl md:text-7xl font-normal text-white tracking-tight numero-item"
+                                id="minutos"
+                            >
+                                00
+                            </span>
+
+                            <!-- SEPARADOR : -->
+                            <span
+                                class="font-mono text-5xl sm:text-6xl md:text-7xl font-normal text-white mx-1 separador-item"
+                                >:</span
+                            >
+
+                            <!-- SEGUNDOS -->
+                            <span
+                                class="font-crimson text-4xl sm:text-6xl md:text-7xl font-normal text-white tracking-tight numero-item"
+                                id="segundos"
+                            >
+                                00
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- 🏷️ ETIQUETAS -->
+                    <div class="flex items-center justify-center">
+                        <div
+                            class="flex items-center justify-between w-full max-w-md px-2"
+                            id="etiquetas-contador"
+                        >
+                            <span
+                                class="font-crimson text-white text-xs sm:text-sm font-semibold uppercase tracking-[0.15em] etiqueta-item"
+                            >
+                                DÍAS
+                            </span>
+                            <span
+                                class="font-crimson text-white text-xs sm:text-sm font-semibold uppercase tracking-[0.15em] etiqueta-item"
+                            >
+                                HRS.
+                            </span>
+                            <span
+                                class="font-crimson text-white text-xs sm:text-sm font-semibold uppercase tracking-[0.15em] etiqueta-item"
+                            >
+                                MIN.
+                            </span>
+                            <span
+                                class="font-crimson text-white text-xs sm:text-sm font-semibold uppercase tracking-[0.15em] etiqueta-item"
+                            >
+                                SEG.
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- 🎬 SCRIPT DEL CONTADOR                                      -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<script>
+    import { gsap } from "gsap";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    if (typeof window !== "undefined") {
+        document.addEventListener("DOMContentLoaded", () => {
+            console.log("⏰ Iniciando contador...");
+
+            // 🎯 FECHA DEL EVENTO: 7 de Febrero 2026 a las 14:30
+            const fechaEvento = new Date("2026-04-25T13:30:00").getTime();
+
+            // ⏰ FUNCIÓN DEL CONTADOR
+            function actualizarContador() {
+                const ahora = new Date().getTime();
+                const diferencia = fechaEvento - ahora;
+
+                if (diferencia > 0) {
+                    const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+                    const horas = Math.floor(
+                        (diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
+                    );
+                    const minutos = Math.floor(
+                        (diferencia % (1000 * 60 * 60)) / (1000 * 60),
+                    );
+                    const segundos = Math.floor(
+                        (diferencia % (1000 * 60)) / 1000,
+                    );
+
+                    const diasEl = document.getElementById("dias");
+                    const horasEl = document.getElementById("horas");
+                    const minutosEl = document.getElementById("minutos");
+                    const segundosEl = document.getElementById("segundos");
+
+                    if (diasEl)
+                        diasEl.textContent = String(dias).padStart(2, "0");
+                    if (horasEl)
+                        horasEl.textContent = String(horas).padStart(2, "0");
+                    if (minutosEl)
+                        minutosEl.textContent = String(minutos).padStart(
+                            2,
+                            "0",
+                        );
+                    if (segundosEl)
+                        segundosEl.textContent = String(segundos).padStart(
+                            2,
+                            "0",
+                        );
+                } else {
+                    const diasEl = document.getElementById("dias");
+                    const horasEl = document.getElementById("horas");
+                    const minutosEl = document.getElementById("minutos");
+                    const segundosEl = document.getElementById("segundos");
+
+                    if (diasEl) diasEl.textContent = "00";
+                    if (horasEl) horasEl.textContent = "00";
+                    if (minutosEl) minutosEl.textContent = "00";
+                    if (segundosEl) segundosEl.textContent = "00";
+                }
+            }
+
+            // Iniciar contador
+            actualizarContador();
+            setInterval(actualizarContador, 1000);
+
+            // 🎯 ANIMACIÓN ELEGANTE DE ENTRADA CON GSAP (SE REPITE CADA VEZ)
+            gsap.fromTo(
+                "#card-contador",
+                {
+                    opacity: 0,
+                    scale: 0.85,
+                    y: 60,
+                },
+                {
+                    opacity: 1,
+                    scale: 1,
+                    y: 0,
+                    duration: 1.2,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: "#card-contador",
+                        start: "top 85%",
+                        toggleActions: "play none none none",
+                    },
+                },
+            );
+
+            gsap.fromTo(
+                "#titulo-faltan",
+                {
+                    opacity: 0,
+                    y: -20,
+                },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: "#card-contador",
+                        start: "top 85%",
+                        toggleActions: "play none none none",
+                    },
+                },
+            );
+
+            gsap.fromTo(
+                ".numero-item, .separador-item",
+                {
+                    opacity: 0,
+                    scale: 0.5,
+                    y: 20,
+                },
+                {
+                    opacity: 1,
+                    scale: 1,
+                    y: 0,
+                    duration: 0.6,
+                    stagger: 0.08,
+                    ease: "back.out(1.4)",
+                    scrollTrigger: {
+                        trigger: "#card-contador",
+                        start: "top 85%",
+                        toggleActions: "play none none none",
+                    },
+                },
+            );
+
+            gsap.fromTo(
+                ".etiqueta-item",
+                {
+                    opacity: 0,
+                    y: 15,
+                },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.5,
+                    stagger: 0.06,
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: "#card-contador",
+                        start: "top 85%",
+                        toggleActions: "play none none none",
+                    },
+                },
+            );
+
+            console.log("⏰✨ ¡Contador activado con animación elegante!");
+        });
+    }
+</script>
+
+<style>
+    /* Efecto hover en el card */
+    #card-contador {
+        transition: all 0.3s ease;
+    }
+
+    /* #card-contador:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 30px 60px rgba(74, 95, 127, 0.4);
+    } */
+</style>

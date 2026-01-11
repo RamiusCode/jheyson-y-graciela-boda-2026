@@ -48,28 +48,34 @@
                             <p
                                 class="font-cormorant text-xl text-white leading-relaxed"
                             >
-                                El mejor regalo es tu presencia, pero si deseas
-                                tener un detalle con nosotros, te dejamos esta
-                                opción
+                                Si deseas honrarnos con regalo agradeceremos tu
+                                aporte para nuestra luna de miel.
                             </p>
                         </div>
 
-                        <!-- QR CODE -->
-                        <div class="mb-4 bg-white p-3 rounded-lg" id="qr-code">
+                        <!-- LOGO MULTICENTER -->
+                        <div class="mb-6" id="logo-multicenter">
                             <img
-                                src="/imagenes/qr.png"
-                                alt="QR Mesa de Regalos"
-                                class="w-56 h-56 object-contain"
+                                src="/imagenes/multicenter.png"
+                                alt="Multicenter"
+                                class="h-16 w-auto"
                             />
                         </div>
 
-                        <!-- NÚMERO DE CUENTA -->
-                        <div id="numero-cuenta" class="text-center">
-                            <p
-                                class="font-cormorant text-lg text-white font-semibold tracking-wide"
+                        <!-- BOTÓN VER MESA DE REGALOS -->
+                        <div id="boton-mesa-regalos">
+                            <a
+                                href="https://mesaderegalos.multicenter.com.bo"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="inline-block px-8 py-2.5 border-2
+                            border-white text-white font-cormorant text-sm
+                            uppercase tracking-wider rounded-full hover:bg-white
+                            hover:text-[#4a5f7f] transition-all duration-300
+                            hover:scale-105"
                             >
-                                CTA: 2983889-000-002
-                            </p>
+                                Ver Mesa de Regalos
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -173,9 +179,9 @@
                     },
                 );
 
-                // Animación del QR
+                // Animación del logo
                 gsap.fromTo(
-                    "#qr-code",
+                    "#logo-multicenter",
                     {
                         opacity: 0,
                         scale: 0.8,
@@ -194,9 +200,9 @@
                     },
                 );
 
-                // Animación del número de cuenta
+                // Animación del botón
                 gsap.fromTo(
-                    "#numero-cuenta",
+                    "#boton-mesa-regalos",
                     {
                         opacity: 0,
                         y: 20,

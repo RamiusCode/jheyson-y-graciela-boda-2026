@@ -186,6 +186,20 @@
                                         Karla Duran Salas
                                     </p>
                                 </div>
+
+                                <!-- PADRINOS DE RECUERDO -->
+                                <div class="text-center md:text-left">
+                                    <h3
+                                        class="font-cormorant-sc text-xl uppercase tracking-wide text-white font-semibold mb-2"
+                                    >
+                                        Padrino de Sorpresa
+                                    </h3>
+                                    <p
+                                        class="font-cormorant-sc text-lg leading-relaxed text-white"
+                                    >
+                                        Álvaro Camacho La Fuente
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -193,80 +207,80 @@
             </div>
         </div>
     </div>
-</section>
 
-<!-- ═══════════════════════════════════════════════════════════ -->
-<!-- 🎬 ANIMACIONES CON GSAP                                     -->
-<!-- ═══════════════════════════════════════════════════════════ -->
-<script>
-    import { gsap } from "gsap";
-    import { ScrollTrigger } from "gsap/ScrollTrigger";
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!-- 🎬 ANIMACIONES CON GSAP                                     -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <script>
+        import { gsap } from "gsap";
+        import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-    gsap.registerPlugin(ScrollTrigger);
+        gsap.registerPlugin(ScrollTrigger);
 
-    if (typeof window !== "undefined") {
-        document.addEventListener("DOMContentLoaded", () => {
-            // 🎯 ANIMACIÓN ELEGANTE DE ENTRADA
-            const tl = gsap.timeline({
-                scrollTrigger: {
-                    trigger: "#card-padrinos",
-                    start: "top 80%",
-                    once: true,
-                },
-            });
+        if (typeof window !== "undefined") {
+            document.addEventListener("DOMContentLoaded", () => {
+                // 🎯 ANIMACIÓN ELEGANTE DE ENTRADA
+                const tl = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: "#card-padrinos",
+                        start: "top 80%",
+                        once: true,
+                    },
+                });
 
-            // Card entra desde abajo
-            tl.fromTo(
-                "#card-principal-padrinos",
-                {
-                    opacity: 0,
-                    y: 50,
-                    scale: 0.95,
-                },
-                {
-                    opacity: 1,
-                    y: 0,
-                    scale: 1,
-                    duration: 1,
-                    ease: "power3.out",
-                },
-                0,
-            )
-                // Título entra desde arriba
-                .fromTo(
-                    "#titulo-padrinos",
+                // Card entra desde abajo
+                tl.fromTo(
+                    "#card-principal-padrinos",
                     {
                         opacity: 0,
-                        y: -30,
+                        y: 50,
+                        scale: 0.95,
                     },
                     {
                         opacity: 1,
                         y: 0,
+                        scale: 1,
                         duration: 1,
-                        ease: "power2.out",
+                        ease: "power3.out",
                     },
                     0,
                 )
-                // Grid de padrinos aparece con fade
-                .fromTo(
-                    "#grid-padrinos",
-                    {
-                        opacity: 0,
-                    },
-                    {
-                        opacity: 1,
-                        duration: 1,
-                        ease: "power2.out",
-                    },
-                    0.3,
-                );
-        });
-    }
-</script>
+                    // Título entra desde arriba
+                    .fromTo(
+                        "#titulo-padrinos",
+                        {
+                            opacity: 0,
+                            y: -30,
+                        },
+                        {
+                            opacity: 1,
+                            y: 0,
+                            duration: 1,
+                            ease: "power2.out",
+                        },
+                        0,
+                    )
+                    // Grid de padrinos aparece con fade
+                    .fromTo(
+                        "#grid-padrinos",
+                        {
+                            opacity: 0,
+                        },
+                        {
+                            opacity: 1,
+                            duration: 1,
+                            ease: "power2.out",
+                        },
+                        0.3,
+                    );
+            });
+        }
+    </script>
 
-<style>
-    /* Aseguramos que Cormorant SC esté disponible */
-    .font-cormorant-sc {
-        font-family: "Cormorant SC", serif;
-    }
-</style>
+    <style>
+        /* Aseguramos que Cormorant SC esté disponible */
+        .font-cormorant-sc {
+            font-family: "Cormorant SC", serif;
+        }
+    </style>
+</section>
